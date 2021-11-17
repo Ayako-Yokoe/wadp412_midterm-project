@@ -4,6 +4,9 @@ import axios from 'axios'
 import SearchBar from './components/SearchBar';
 import WeatherResult from './components/WeatherResult';
 import Context from './components/Context';
+import Details from './components/Details';
+import { Link } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 
 function App() {
@@ -14,10 +17,12 @@ function App() {
     weather: '',
     temp: '',
     high: '',
-    low: ''
-    // humidity:'',
-    // sunrise:'',
-    // sunset:''
+    low: '',
+
+    feelsLike: '',
+    humidity:'',
+    sunrise:'',
+    sunset:'',
   }
   )
 
@@ -35,7 +40,6 @@ function App() {
   //   const response = await request
 
 
-
   const searchWeather = async () => {
       axios.get(url)
       .then((response) => {setWeather({
@@ -45,24 +49,62 @@ function App() {
             temp: response.data.main.temp,
             high: response.data.main.temp_max,
             low: response.data.main.temp_min,
+            feelsLike: response.data.main.feels_like,
+            humidity: response.data.main.humidity,
+            sunrise: response.data.sys.sunrise,
+            sunset: response.data.sys.sunset
           })
         })
-      .catch((error) => alert('Not Found'))
+      .catch((error) => alert('No Such City Found'))
       setCity('')
+      
   }
 
   useEffect(() => {
     searchWeather()
+    console.log(weather)
   }, [])
 
 
   return (
     <div className="App">
+       <Routes>
+        <Route 
+          path="/" 
+          element={ 
+            <Context.Provider value={{ setCity, searchWeather, weather, iconUrl }} >
+            <SearchBar  />
+            {weather && <WeatherResult />}
+          </Context.Provider>
+          } />
 
+        <Route 
+          path="/details" 
+          element={ 
+            <Context.Provider value={{ weather, iconUrl }} >
+            {weather && <Details /> }
+          </Context.Provider>
+           } />
+      </Routes>
+      
+
+      {/* <Routes>
+      <Route path="/" element={ <App />} />
+      <Route path="/details" element={ <Details /> } />
+      </Routes>
+      
       <Context.Provider value={{ setCity, searchWeather, weather, iconUrl }} >
         <SearchBar  />
         {weather && <WeatherResult />}
+        
       </Context.Provider>
+
+      <Context.Provider value={{ weather }} >
+        hello
+        {weather && <Details /> }
+        
+      </Context.Provider> */}
+
       
     </div>
   );
