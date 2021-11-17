@@ -1,10 +1,13 @@
 import './App.css';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-// import WeatherDetail from './components/WeatherDetail';
+import SearchBar from './components/SearchBar';
+import WeatherResult from './components/WeatherResult';
+import Context from './components/Context';
+
 
 function App() {
-  const [city, setCity] = useState('')
+  const [city, setCity] = useState('Vancouver')
   const [weather, setWeather] = useState({
     cityName: '',
     icon: '',
@@ -15,121 +18,52 @@ function App() {
     // humidity:'',
     // sunrise:'',
     // sunset:''
-    }
+  }
   )
 
-  const [dataLoaded, setDataLoaded] = useState(false)
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_WEATHER_API}`
+  const iconUrl = `http://openweathermap.org/img/w/${weather.icon}.png`
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER_API}`
-
-  const searchWeather = () => {
-    axios.get(url)
-    .then((response) => {setWeather({
-          cityName: response.data.name,
-          icon: response.data.weather[0].icon,
-          weather: response.data.weather[0].description,
-          temp: response.data.main.temp,
-          high: response.data.main.temp_max,
-          low: response.data.main.temp_min,
-        })
-      })
-    setDataLoaded(true)
-  }
-  
-
-  // const searchCity = async () => {
+  // const api_call = async e => {
   //   e.preventDefault()
-    
-  //   const url = `https://api.openweathermap.org/data/2.5/weather?q=Tokyo&appid=${process.env.REACT_APP_WEATHER_API}`
-  //   const response = await axios.get(url)
-  //   setWeather(response)
-  //   setCity(response.data.name)
-
-  //   if(!city){
-  //     setWeather(null)
-  //     return alert('Not Found')
+  //   const location = e.target.elements.city.value
+  //   if (!location) {
+  //     return setError("Please enter the name of the city"), setWeather(null)
   //   }
-  // }
-
-  // useEffect(() => {
-  //   searchCity()
-  // }, [])
+  //   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`
+  //   const request = axios.get(url)
+  //   const response = await request
 
 
 
-  //   useEffect(() => (
-  //     axios.get(url)
-  //     .then((response) => {
-  //       setWeather({
-  //         cityName: response.data.name,
-  //         icon: response.data.weather[0].icon,
-  //         weather: response.data.weather[0].description,
-  //         temp: response.data.main.temp,
-  //         high: response.data.main.temp_max,
-  //         low: response.data.main.temp_min
-  //       })
-  //       setQueryCity('')
-  //     }, [])
-  //     ))
+  const searchWeather = async () => {
+      axios.get(url)
+      .then((response) => {setWeather({
+            cityName: response.data.name,
+            icon: response.data.weather[0].icon,
+            weather: response.data.weather[0].description,
+            temp: response.data.main.temp,
+            high: response.data.main.temp_max,
+            low: response.data.main.temp_min,
+          })
+        })
+      .catch((error) => alert('Not Found'))
+      setCity('')
+  }
+
+  useEffect(() => {
+    searchWeather()
+  }, [])
 
 
   return (
     <div className="App">
-      <input 
-      type="text"
-      onChange={(e) => {
-        setCity(e.target.value)
-      }} 
-      />
-      <button onClick={searchWeather}>Search</button>
-      {dataLoaded &&
-      <div className="weatherContainer">
-        <div className="city">{weather.cityName}</div>
-        <div className="icon">{weather.icon}</div>
-        <div className="weather">{weather.weather}</div>
-        <div className="temp-current">{weather.temp}</div>
-        <div>
-          <div className="temp-min">{weather.high}</div>
-          <div className="temp-max">{weather.low}</div>
-        </div>
-      </div>}
 
-
-
-{/* 
-      <div className="searchContainer">
-      <form onSubmit={searchCity}>
-        <input 
-          className="searchBar" 
-          type="text" 
-          placeholder="Enter a City Name"
-          onChange={(e) => setQueryCity(e.target.value)}
-          value={queryCity} 
-        />
-      </form>
-      </div> */}
-
-      {/* <div className="searchContainer">
-        <input 
-          className="searchBar" 
-          type="text" 
-          placeholder="Enter a City Name"
-          onChange={(e) => setQueryCity(e.target.value)}
-          value={queryCity} 
-          onKeyPress={searchCity}
-        />
-      </div> */}
-
-      {/* <div className="weatherContainer">
-        <div className="city">{weather.data.name}</div> */}
-        {/* <div className="icon">{icon}</div>
-        <div className="weather">{description}</div>
-        <div className="temp-current">{temp}</div>
-        <div>
-          <div className="temp-min">{temp_min}</div>
-          <div className="temp-max">{temp_max}</div>
-        </div> */}
-      {/* </div> */}
+      <Context.Provider value={{ setCity, searchWeather, weather, iconUrl }} >
+        <SearchBar  />
+        {weather && <WeatherResult />}
+      </Context.Provider>
+      
     </div>
   );
 }
