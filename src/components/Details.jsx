@@ -1,6 +1,12 @@
 import React, { useContext, useState } from 'react'
 import Context from './Context'
 import '../styles/Details.css'
+import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+import InvertColorsIcon from '@mui/icons-material/InvertColors';
+
 
 // icon!!
 
@@ -52,14 +58,39 @@ const Details = () => {
     <div className="weatherDetails">
       <div className="detailsContainer">
         <div className="detail-city">{weather.cityName}</div>
-        <div className="detail-date-time">{time.month} {time.day} {time.hour} : {time.minute}</div>
+        <div className="detail-date">{time.month} {time.day}</div>
+        <div className="detail-time">{time.hour} : {time.minute}</div>
         <div className="detail-icon"><img src={iconUrl} alt={weather.icon} /></div>
-        <div className="detail-weather">{weather.weather}</div>
-        <div className="detail-temp-current" >Current {Math.floor(tempConvert.temp)} &deg;C</div>
-        <div className="detail-temp-max" >High {Math.floor(tempConvert.high)} &deg;C</div>
-        <div className="detail-temp-min" >Low {Math.floor(tempConvert.low)} &deg;C</div>
-        <div className="detail-feels-like" >Feels Like {Math.floor(tempConvert.feelsLike)} &deg;C</div>
-        <div className="detail-humidity">Humidity {weather.humidity} %</div>
+
+        {/* <div className="detail-data">
+          <div>
+            <p>Current</p>
+            <p>{Math.floor(tempConvert.temp)} &deg;C</p>
+          </div>
+          <div>
+            <p>High</p>
+            <p>{Math.floor(tempConvert.high)} &deg;C</p>
+          </div>
+          <div>
+            <p>Low</p>
+            <p>{Math.floor(tempConvert.low)} &deg;C</p>
+          </div>
+          <div>
+            <p>Feels Like </p>
+            <p>{Math.floor(tempConvert.feelsLike)} &deg;C</p>
+          </div>
+          <div>
+            <p>Humidity</p>
+            <p>{weather.humidity} %</p>
+          </div> */}
+
+          {/* grid */}
+
+          <div>Current &nbsp; <DeviceThermostatIcon />  &nbsp; <span className="detail-data">{Math.floor(tempConvert.temp)} &deg;C</span></div>
+          <div>High &nbsp; <ArrowCircleUpIcon /> &nbsp;  <span className="detail-data">{Math.floor(tempConvert.high)} &deg;C</span></div>
+          <div>Low  &nbsp; <ArrowCircleDownIcon /> &nbsp;  <span className="detail-data">{Math.floor(tempConvert.low)} &deg;C</span></div>
+          <div>Feels Like &nbsp; <AccessibilityNewIcon /> &nbsp; <span className="detail-data">{Math.floor(tempConvert.feelsLike)} &deg;C</span></div>
+          <div>Humidity &nbsp; <InvertColorsIcon /> &nbsp; <span className="detail-data">{weather.humidity} %</span></div>
 
         <div className="detail-tempUnit">
               <button className="detail-unitBtn" onClick={() => {handleConverter('c')}}>&deg;C</button>

@@ -11,8 +11,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 600px;
-    height: 500px;
+    width: 65%;
+    height: 80%;
     background-color:rgba(255, 255, 255, 0.5);
     border: 1px solid gray;
     border-radius: 5px;
@@ -21,7 +21,8 @@
 }
 
 .city {
-    font-size: 56px;
+    /* font-size: 56px; */
+    font-size: 3rem;
 }
 .icon img {
     width: 100px;
@@ -29,7 +30,7 @@
 }
 .temp-current {
     padding-top: 5px;
-    font-size: 38px;
+    font-size: 2rem;
 }
 .temp-min-max {
     display: flex;
@@ -43,7 +44,7 @@
 }
 .temp-Unit .tem-min,
 .temp-Unit .temp-max {
-    font-size: 14px;
+    font-size: 0.8rem;
 }
 .tempUnit {
     display: flex;
