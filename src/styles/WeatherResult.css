@@ -1,0 +1,74 @@
+.weatherResult {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-color: pink;
+}
+
+.weatherContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 400px;
+    background-color:rgba(255, 255, 255, 0.5);
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 30px;
+    box-shadow: 0 5px 15px gray;
+}
+
+.city {
+    font-size: 32px;
+}
+.icon img {
+    width: 70px;
+    height: 70px;
+}
+.temp-current {
+    padding-top: 5px;
+    font-size: 28px;
+}
+.temp-min-max {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+}
+.temp-min {
+    margin-right: 20px;
+}
+.temp-Unit .tem-min,
+.temp-Unit .temp-max {
+    font-size: 14px;
+}
+.tempUnit {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+.unitBtn {
+    padding: 8px;
+    margin-right: 5px;
+    width: 30px;
+    height: 30px;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.detailBtn {
+    padding: 8px;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 8px;
+}

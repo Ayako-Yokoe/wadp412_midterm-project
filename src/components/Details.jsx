@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import Context from './Context'
+import '../styles/Details.css'
 
 // icon!!
 
@@ -12,7 +13,7 @@ const Details = () => {
       low: low,
       feelsLike: feelsLike
     })
-
+  
     const handleConverter = (unit) => {
         if(unit === 'f') {
           setTempConvert({
@@ -30,41 +31,45 @@ const Details = () => {
           }) 
         }
       }
+  
+      // var timestamp = 1607110465663
+      // var date = new Date(timestamp);
+      
+      // console.log("Date: "+date.getDate()+
+      //           "/"+(date.getMonth()+1)+
+      //           "/"+date.getFullYear()+
+      //           " "+date.getHours()+
+      //           ":"+date.getMinutes()+
+      //           ":"+date.getSeconds());
 
-// sunrise/sunset
-// let unix_timestamp = 1549312452
-// // Create a new JavaScript Date object based on the timestamp
-// // multiplied by 1000 so that the argument is in milliseconds, not seconds.
-// var date = new Date(unix_timestamp * 1000);
-// // Hours part from the timestamp
-// var hours = date.getHours();
-// // Minutes part from the timestamp
-// var minutes = "0" + date.getMinutes();
-// // Seconds part from the timestamp
-// var seconds = "0" + date.getSeconds();
-
-// // Will display time in 10:30:23 format
-// var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+      // String(date.getMinutes()).padStart(2, "0"); 
+      
+    const handleTimeConverter = (timestamp) => {
+      const milliseconds = timestamp * 1000
+      const date = new Date(milliseconds)
+      const time = `${date.getMonth()+1} / ${date.getDate()} ${date.getHours()} : ${date.getMinutes()}`
+      return time
+    }
 
   return (
     <div className="weatherDetails">
-        <div className="city">{weather.cityName}</div>
-        <div className="icon"><img src={iconUrl} alt={weather.icon} /></div>
-        <div className="weather">{weather.weather}</div>
-        <div className="temp-current" >Current {Math.floor(tempConvert.temp)} &deg;C</div>
-        <div className="temp-min" >High {Math.floor(tempConvert.high)} &deg;C</div>
-        <div className="temp-max" >Low {Math.floor(tempConvert.low)} &deg;C</div>
-        <div className="temp-current" >Feels Like {Math.floor(tempConvert.feelsLike)} &deg;C</div>
-        <div className="weather">Humidity{weather.humidity} %</div>
-        <div className="city">{weather.sunrise}</div>
-        <div className="city">{weather.sunset}</div>
+      <div className="detailsContainer">
+        <div className="detail-city">{weather.cityName}</div>
+        <div className="detail-date-time">{handleTimeConverter(weather.dt)}</div>
+        <div className="detail-icon"><img src={iconUrl} alt={weather.icon} /></div>
+        <div className="detail-weather">{weather.weather}</div>
+        <div className="detail-temp-current" >Current {Math.floor(tempConvert.temp)} &deg;C</div>
+        <div className="detail-temp-max" >High {Math.floor(tempConvert.high)} &deg;C</div>
+        <div className="detail-temp-min" >Low {Math.floor(tempConvert.low)} &deg;C</div>
+        <div className="detail-feels-like" >Feels Like {Math.floor(tempConvert.feelsLike)} &deg;C</div>
+        <div className="detail-humidity">Humidity {weather.humidity} %</div>
 
-        <div>
-              <button onClick={() => {handleConverter('c')}}>&deg;C</button>
-              <button onClick={() => {handleConverter('f')}}>&deg;F</button>
+        <div className="detail-tempUnit">
+              <button className="detail-unitBtn" onClick={() => {handleConverter('c')}}>&deg;C</button>
+              <button className="detail-unitBtn" onClick={() => {handleConverter('f')}}>&deg;F</button>
             </div>
 
-        
+      </div>
     </div>
   )
 }

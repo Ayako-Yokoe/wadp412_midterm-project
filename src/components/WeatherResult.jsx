@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react'
 import Context from './Context'
+import { Link } from 'react-router-dom'
+import "../styles/WeatherResult.css"
 
 const WeatherResult = () => {
   const { weather, iconUrl } = useContext(Context)
@@ -27,21 +29,23 @@ const WeatherResult = () => {
   }
 
   return (
-    <div className="weatherContainer">
+    <div className="weatherResult">
 
       <div className="weatherContainer">
             <div className="city">{weather.cityName}</div>
             <div className="icon"><img src={iconUrl} alt={weather.icon} /></div>
             <div className="weather">{weather.weather}</div>
             <div className="temp-current" >{Math.floor(tempConvert.temp)} &deg;C</div>
-            <div>
-              <div className="temp-min" >{Math.floor(tempConvert.high)} &deg;C</div>
-              <div className="temp-max"  >{Math.floor(tempConvert.low)} &deg;C</div>
+            <div className="temp-min-max">
+              <div className="temp-min" >{Math.floor(tempConvert.low)} &deg;C</div>
+              <div className="temp-max"  >{Math.floor(tempConvert.high)} &deg;C</div>
             </div>
-            <div>
-              <button onClick={() => {handleConverter('c')}}>&deg;C</button>
-              <button onClick={() => {handleConverter('f')}}>&deg;F</button>
+            <div className="tempUnit">
+              <button className="unitBtn" onClick={() => {handleConverter('c')}}>&deg;C</button>
+              <button className="unitBtn" onClick={() => {handleConverter('f')}}>&deg;F</button>
             </div>
+
+            <Link to="/details"><button className="detailBtn">More Details</button></Link>
 
           </div>
       </div>

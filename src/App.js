@@ -5,7 +5,6 @@ import SearchBar from './components/SearchBar';
 import WeatherResult from './components/WeatherResult';
 import Context from './components/Context';
 import Details from './components/Details';
-import { Link } from 'react-router-dom'
 import { Routes, Route } from 'react-router-dom'
 
 
@@ -49,10 +48,9 @@ function App() {
             temp: response.data.main.temp,
             high: response.data.main.temp_max,
             low: response.data.main.temp_min,
+            dt: response.data.dt,
             feelsLike: response.data.main.feels_like,
             humidity: response.data.main.humidity,
-            sunrise: response.data.sys.sunrise,
-            sunset: response.data.sys.sunset
           })
         })
       .catch((error) => alert('No Such City Found'))
