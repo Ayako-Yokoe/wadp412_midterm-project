@@ -7,7 +7,6 @@ import Context from './components/Context';
 import Details from './components/Details';
 import { Routes, Route } from 'react-router-dom'
 
-
 function App() {
   const [city, setCity] = useState('Vancouver')
   const [weather, setWeather] = useState({
@@ -18,28 +17,32 @@ function App() {
     high: '',
     low: '',
 
+    dt: '',
     feelsLike: '',
-    humidity:'',
-    sunrise:'',
-    sunset:'',
-  }
-  )
+    humidity:''
+  })
+  const [time, setTime] = useState({
+    month: '',
+    day: '',
+    hour: '',
+    minute: ''
+  })
+
+const handleTimeConverter = (timestamp) => {
+  const milliseconds = timestamp * 1000
+  const date = new Date(milliseconds)
+  setTime({
+    month: date.toLocaleString('en-US', {month: 'long'}),
+    day: date.toLocaleString('en-US', {day: 'numeric'}),
+    hour: date.toLocaleString('en-US', {hourCycle: 'h23', hour: '2-digit'}),
+    minute: date.toLocaleString('en-US', {minute: '2-digit'})
+  })
+}
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_WEATHER_API}`
   const iconUrl = `http://openweathermap.org/img/w/${weather.icon}.png`
 
-  // const api_call = async e => {
-  //   e.preventDefault()
-  //   const location = e.target.elements.city.value
-  //   if (!location) {
-  //     return setError("Please enter the name of the city"), setWeather(null)
-  //   }
-  //   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`
-  //   const request = axios.get(url)
-  //   const response = await request
-
-
-  const searchWeather = async () => {
+  const searchWeather = () => {
       axios.get(url)
       .then((response) => {setWeather({
             cityName: response.data.name,
@@ -55,17 +58,17 @@ function App() {
         })
       .catch((error) => alert('No Such City Found'))
       setCity('')
-      
   }
 
   useEffect(() => {
     searchWeather()
-    console.log(weather)
   }, [])
 
 
   return (
-    <div className="App">
+    <div className="App" onLoad={() => {handleTimeConverter(weather.dt)}}>
+      <div className={(time.hour > 18 || time.hour < 6) ? 'app-night' : 'app-day'}>
+        <div className="appContainer">
        <Routes>
         <Route 
           path="/" 
@@ -79,12 +82,13 @@ function App() {
         <Route 
           path="/details" 
           element={ 
-            <Context.Provider value={{ weather, iconUrl }} >
+            <Context.Provider value={{ weather, iconUrl, time }} >
             {weather && <Details /> }
           </Context.Provider>
            } />
-      </Routes>
-      
+        </Routes>
+        </div>
+      </div>
 
       {/* <Routes>
       <Route path="/" element={ <App />} />

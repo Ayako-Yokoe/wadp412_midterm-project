@@ -5,7 +5,7 @@ import '../styles/Details.css'
 // icon!!
 
 const Details = () => {
-    const { weather, iconUrl } = useContext(Context)
+    const { weather, iconUrl, time } = useContext(Context)
     const { temp, high, low, feelsLike } = weather
     const [tempConvert, setTempConvert] = useState({
       temp: temp,
@@ -44,18 +44,15 @@ const Details = () => {
 
       // String(date.getMinutes()).padStart(2, "0"); 
       
-    const handleTimeConverter = (timestamp) => {
-      const milliseconds = timestamp * 1000
-      const date = new Date(milliseconds)
-      const time = `${date.getMonth()+1} / ${date.getDate()} ${date.getHours()} : ${date.getMinutes()}`
-      return time
-    }
+    // handleTimeConverter = (timestamp) => {
+    //   return (`${timestamp.month} ${timestamp.date} ${timestamp.hour} : ${timestamp.minute}`)
+    // }
 
   return (
     <div className="weatherDetails">
       <div className="detailsContainer">
         <div className="detail-city">{weather.cityName}</div>
-        <div className="detail-date-time">{handleTimeConverter(weather.dt)}</div>
+        <div className="detail-date-time">{time.month} {time.day} {time.hour} : {time.minute}</div>
         <div className="detail-icon"><img src={iconUrl} alt={weather.icon} /></div>
         <div className="detail-weather">{weather.weather}</div>
         <div className="detail-temp-current" >Current {Math.floor(tempConvert.temp)} &deg;C</div>

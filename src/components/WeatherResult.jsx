@@ -37,15 +37,15 @@ const WeatherResult = () => {
             <div className="weather">{weather.weather}</div>
             <div className="temp-current" >{Math.floor(tempConvert.temp)} &deg;C</div>
             <div className="temp-min-max">
-              <div className="temp-min" >{Math.floor(tempConvert.low)} &deg;C</div>
-              <div className="temp-max"  >{Math.floor(tempConvert.high)} &deg;C</div>
+              <div className="temp-min" >low : {Math.floor(tempConvert.low)} &deg;C</div>
+              <div className="temp-max" >high : {Math.floor(tempConvert.high)} &deg;C</div>
             </div>
             <div className="tempUnit">
               <button className="unitBtn" onClick={() => {handleConverter('c')}}>&deg;C</button>
               <button className="unitBtn" onClick={() => {handleConverter('f')}}>&deg;F</button>
             </div>
 
-            <Link to="/details"><button className="detailBtn">More Details</button></Link>
+            <Link to="/details" target="_blank"><button className="detailBtn">More Details</button></Link>
 
           </div>
       </div>

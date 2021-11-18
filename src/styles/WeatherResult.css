@@ -3,8 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90vh;
-    background-color: pink;
+    height: 85vh;
 }
 
 .weatherContainer {
@@ -12,35 +11,35 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 400px;
-    height: 400px;
+    width: 600px;
+    height: 500px;
     background-color:rgba(255, 255, 255, 0.5);
     border: 1px solid gray;
     border-radius: 5px;
     padding: 30px;
-    box-shadow: 0 5px 15px gray;
+    line-height: 1.5;
 }
 
 .city {
-    font-size: 32px;
+    font-size: 56px;
 }
 .icon img {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
 }
 .temp-current {
     padding-top: 5px;
-    font-size: 28px;
+    font-size: 38px;
 }
 .temp-min-max {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 8px;
+    margin: 10px;
 }
 .temp-min {
-    margin-right: 20px;
+    margin-right: 30px;
 }
 .temp-Unit .tem-min,
 .temp-Unit .temp-max {
@@ -55,20 +54,23 @@
 }
 .unitBtn {
     padding: 8px;
-    margin-right: 5px;
-    width: 30px;
+    margin: 5px 10px;
+    width: 50px;
     height: 30px;
     outline: none;
     border: 1px solid gray;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: 500;
 }
 
 .detailBtn {
-    padding: 8px;
+    padding: 10px;
     outline: none;
     border: 1px solid gray;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 8px;
+    width: 130px;
+    font-weight: 500;
 }

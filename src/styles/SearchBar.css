@@ -2,16 +2,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 15vh;
 }
 .searchBar-input {
     background-color: #fff;
     margin-top: 10px;
-    padding: 10px;
+    padding: 5px 15px;
     outline: none;
+    font-size: 20px;
+    letter-spacing: 2px;
     border: 1px solid gray;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    box-shadow: 0px 5px 10px gray;
+    height: 50px;
 }
 .searchBar-btn {
     background-color: cornflowerblue;
@@ -22,5 +25,5 @@
     border: 1px solid gray;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    box-shadow: 0px 5px 10px gray;
+    height: 50px;
 }
