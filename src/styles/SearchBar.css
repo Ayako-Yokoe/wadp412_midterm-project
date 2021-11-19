@@ -5,7 +5,7 @@
     height: 15vh;
 }
 .searchBar-input {
-    background-color: #fff;
+    background-color: rgba(255,255,255,0.9);
     margin-top: 10px;
     padding: 5px 15px;
     outline: none;
@@ -27,4 +27,19 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     height: 50px;
+    cursor: pointer;
+}
+
+@media (max-width: 375px){
+    .searchBar-input {
+        font-size: 1rem;
+        width: 70%;
+    }
+}
+
+@media (max-width: 425px){
+    .searchBar-input {
+        font-size: 1rem;
+        width: 70%;
+    }
 }

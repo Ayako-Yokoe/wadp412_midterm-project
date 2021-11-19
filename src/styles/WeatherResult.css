@@ -5,46 +5,36 @@
     align-items: center;
     height: 85vh;
 }
-
 .weatherContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 65%;
-    height: 80%;
+    height: 95%;
     background-color:rgba(255, 255, 255, 0.5);
     border: 1px solid gray;
     border-radius: 5px;
     padding: 30px;
     line-height: 1.5;
 }
-
 .city {
-    /* font-size: 56px; */
     font-size: 3rem;
+}
+.weatherContainer .date,
+.weatherContainer .time {
+    font-size: 2rem;
 }
 .icon img {
     width: 100px;
     height: 100px;
 }
-.temp-current {
-    padding-top: 5px;
-    font-size: 2rem;
-}
-.temp-min-max {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-}
-.temp-min {
-    margin-right: 30px;
-}
-.temp-Unit .tem-min,
-.temp-Unit .temp-max {
-    font-size: 0.8rem;
+.detail-data {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 40px;
+    padding-left: 30px;
+    margin-top: 10px;
 }
 .tempUnit {
     display: flex;
@@ -65,13 +55,44 @@
     font-weight: 500;
 }
 
-.detailBtn {
-    padding: 10px;
-    outline: none;
-    border: 1px solid gray;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 8px;
-    width: 130px;
-    font-weight: 500;
+@media (max-width: 375px){
+    .weatherContainer {
+        width: 85%;
+        height: 90%;
+        padding: 10px;
+        line-height: 1.2;
+    }
+    .city {
+        font-size: 2.3rem;
+    }
+    .weatherContainer .date,
+    .weatherContainer .time {
+    font-size: 1.6rem;
+    }
+    .detail-data {
+        grid-column-gap: 20px;
+        padding-left: 10px;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 425px){
+    .weatherContainer {
+        width: 85%;
+        height: 90%;
+        padding: 5px;
+        line-height: 1.4;
+    }
+    .city {
+        font-size: 2.3rem;
+    }
+    .weatherContainer .date,
+    .weatherContainer .time {
+    font-size: 1.6rem;
+    }
+    .detail-data {
+        grid-column-gap: 20px;
+        padding-left: 10px;
+        margin-top: 10px;
+    }
 }
