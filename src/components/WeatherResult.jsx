@@ -16,6 +16,7 @@ const WeatherResult = () => {
     low: low,
     feelsLike: feelsLike
   })
+  const [ fahrenheit, setFahrenheit] = useState(false)
 
   const handleConverter = (unit) => {
     if(unit === 'f') {
@@ -25,13 +26,15 @@ const WeatherResult = () => {
         low: (low * 1.8) + 32,
         feelsLike: (feelsLike * 1.8) + 32
       })
+      setFahrenheit(true)
     } else {
       setTempConvert({
         temp: temp,
         high: high,
         low: low,
         feelsLike: feelsLike
-      }) 
+      })
+      setFahrenheit(false) 
     }
   }
 
@@ -45,13 +48,13 @@ const WeatherResult = () => {
 
         <div className="detail-data">
             <p><DeviceThermostatIcon /> Current</p>
-            <p>{Math.floor(tempConvert.temp)} &deg;C</p>
+            <p>{Math.floor(tempConvert.temp)} &deg;{fahrenheit ? 'F' : 'C '}</p>
             <p><ArrowCircleUpIcon /> High</p>
-            <p>{Math.floor(tempConvert.high)} &deg;C</p>
+            <p>{Math.floor(tempConvert.high)} &deg;{fahrenheit ? 'F' : 'C '}</p>
             <p><ArrowCircleDownIcon /> Low</p>
-            <p>{Math.floor(tempConvert.low)} &deg;C</p>
+            <p>{Math.floor(tempConvert.low)} &deg;{fahrenheit ? 'F' : 'C '}</p>
             <p><AccessibilityNewIcon /> Feels Like </p>
-            <p>{Math.floor(tempConvert.feelsLike)} &deg;C</p>
+            <p>{Math.floor(tempConvert.feelsLike)} &deg;{fahrenheit ? 'F' : 'C '}</p>
             <p><InvertColorsIcon /> Humidity</p>
             <p>{weather.humidity} %</p>
         </div>
