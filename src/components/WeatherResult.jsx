@@ -8,7 +8,7 @@ import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import InvertColorsIcon from '@mui/icons-material/InvertColors';
 
 const WeatherResult = () => {
-  const { weather, iconUrl, time } = useContext(Context)
+  const { weather, iconUrl } = useContext(Context)
   const { temp, high, low, feelsLike } = weather
   const [tempConvert, setTempConvert] = useState({
     temp: temp,
@@ -40,8 +40,6 @@ const WeatherResult = () => {
 
       <div className="weatherContainer">
             <p className="city">{weather.cityName}</p>
-            {/* <p className="date">{time.month} {time.day}</p>
-            <p className="time">{time.hour} : {time.minute}</p> */}
             <p className="icon"><img src={iconUrl} alt={weather.icon} /></p>
             <p className="weather">{weather.weather}</p>
 
