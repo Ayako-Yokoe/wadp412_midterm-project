@@ -48,13 +48,13 @@ const WeatherResult = () => {
 
         <div className="detail-data">
             <p><DeviceThermostatIcon /> Current</p>
-            <p>{Math.floor(tempConvert.temp)} &deg;{fahrenheit ? 'F' : 'C '}</p>
+            <p>{Math.floor(tempConvert.temp)} &deg;{fahrenheit ? 'F' : 'C'}</p>
             <p><ArrowCircleUpIcon /> High</p>
-            <p>{Math.floor(tempConvert.high)} &deg;{fahrenheit ? 'F' : 'C '}</p>
+            <p>{Math.floor(tempConvert.high)} &deg;{fahrenheit ? 'F' : 'C'}</p>
             <p><ArrowCircleDownIcon /> Low</p>
-            <p>{Math.floor(tempConvert.low)} &deg;{fahrenheit ? 'F' : 'C '}</p>
+            <p>{Math.floor(tempConvert.low)} &deg;{fahrenheit ? 'F' : 'C'}</p>
             <p><AccessibilityNewIcon /> Feels Like </p>
-            <p>{Math.floor(tempConvert.feelsLike)} &deg;{fahrenheit ? 'F' : 'C '}</p>
+            <p>{Math.floor(tempConvert.feelsLike)} &deg;{fahrenheit ? 'F' : 'C'}</p>
             <p><InvertColorsIcon /> Humidity</p>
             <p>{weather.humidity} %</p>
         </div>
