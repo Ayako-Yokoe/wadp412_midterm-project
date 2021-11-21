@@ -54,6 +54,9 @@ function App() {
     searchWeather()
   }, [])
 
+  // useLayoutEffect might work to show the default city, 'vancouver'
+
+
   return (
     <div className="App" onLoad={() => {handleTimeConverter(weather.dt)}}>
       <div className={(time.hour > 18 || time.hour < 6) ? 'app-night' : 'app-day'}>
