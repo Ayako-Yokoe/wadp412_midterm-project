@@ -6,6 +6,7 @@ import Context from './components/Context';
 import './App.css';
 
 function App() {
+  const [errorMessage, setErrorMessage] = useState(false)
   const [city, setCity] = useState('Vancouver')
   const [weather, setWeather] = useState({
     cityName: '',
@@ -32,7 +33,7 @@ function App() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_WEATHER_API}`
   const iconUrl = `http://openweathermap.org/img/w/${weather.icon}.png`
 
-  const searchWeather = () => {
+  const searchWeather = () => {      
       axios.get(url)
       .then((response) => {setWeather({
             cityName: response.data.name,
@@ -46,15 +47,10 @@ function App() {
             humidity: response.data.main.humidity,
           })
         })
-      .catch((error) => alert('No Such City Found'))
-      setCity('')
-  }
- 
-  const handleKeypress = (e) => {
-    if(e.keyCode === 13) {
-      // this.btn.click()
-      searchWeather()
-    }
+      .catch((err) => {
+        setErrorMessage(true)
+      })
+      setErrorMessage(false)
   }
 
   useEffect(() => {
@@ -66,7 +62,7 @@ function App() {
     <div className="App" onLoad={() => {handleTimeConverter(weather.dt)}}>
       <div className={(time.hour > 18 || time.hour < 6) ? 'app-night' : 'app-day'}>
         <div className="appContainer">
-        <Context.Provider value={{ setCity, searchWeather, handleKeypress, weather, iconUrl, time }} >
+        <Context.Provider value={{ weather, iconUrl, time, errorMessage, setErrorMessage, setCity, searchWeather }} >
           <SearchBar  />
           {weather && <WeatherResult />}
         </Context.Provider>

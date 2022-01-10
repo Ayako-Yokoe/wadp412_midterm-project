@@ -8,7 +8,7 @@ import InvertColorsIcon from '@mui/icons-material/InvertColors'
 import "../styles/WeatherResult.css"
 
 const WeatherResult = () => {
-  const { weather, iconUrl } = useContext(Context)
+  const { weather, iconUrl, errorMessage } = useContext(Context)
   const { temp, high, low, feelsLike } = weather
   const [tempConvert, setTempConvert] = useState({
     temp: Math.floor(temp),
@@ -40,7 +40,9 @@ const WeatherResult = () => {
 
   return (
     <div className="weatherResult">
-
+      { errorMessage ? (
+        <p className="error-message">No Such City Found</p>
+      ) : (
       <div className="weatherContainer">
             <p className="city">{weather.cityName}</p>
             <p className="icon"><img src={iconUrl} alt={weather.icon} /></p>
@@ -63,8 +65,8 @@ const WeatherResult = () => {
           <button className="unitBtn" onClick={() => {handleConverter('c')}}>&deg;C</button>
           <button className="unitBtn" onClick={() => {handleConverter('f')}}>&deg;F</button>
         </div> 
-
       </div> 
+    )}
     </div>
   )
 }
