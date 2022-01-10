@@ -49,19 +49,24 @@ function App() {
       .catch((error) => alert('No Such City Found'))
       setCity('')
   }
+ 
+  const handleKeypress = (e) => {
+    if(e.keyCode === 13) {
+      // this.btn.click()
+      searchWeather()
+    }
+  }
 
   useEffect(() => {
     searchWeather()
   }, [])
-
-  // useLayoutEffect might work to show the default city, 'vancouver'
 
 
   return (
     <div className="App" onLoad={() => {handleTimeConverter(weather.dt)}}>
       <div className={(time.hour > 18 || time.hour < 6) ? 'app-night' : 'app-day'}>
         <div className="appContainer">
-        <Context.Provider value={{ setCity, searchWeather, weather, iconUrl, time }} >
+        <Context.Provider value={{ setCity, searchWeather, handleKeypress, weather, iconUrl, time }} >
           <SearchBar  />
           {weather && <WeatherResult />}
         </Context.Provider>

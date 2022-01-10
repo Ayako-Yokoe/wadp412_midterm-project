@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 import Context from './Context'
+import SearchIcon from '@mui/icons-material/Search'
 import "../styles/SearchBar.css"
-import SearchIcon from '@mui/icons-material/Search';
 
 const SearchBar = () => {
-    const { setCity, searchWeather } = useContext(Context)
+    const { setCity, searchWeather, handleKeypress } = useContext(Context)
+
 
   return (
     <div className="searchBar-container">
@@ -13,10 +14,13 @@ const SearchBar = () => {
         type="text"
         placeholder="Enter a City Name ..."
         onChange={(e) => setCity(e.target.value)}
+        onKeyPress={handleKeypress}
         />
         <button
         className="searchBar-btn"
+        type="submit"
         onClick={searchWeather}
+        // ref={node => (this.btn = node)}
         >
         <SearchIcon />
         </button>
